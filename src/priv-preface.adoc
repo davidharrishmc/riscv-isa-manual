@@ -30,7 +30,8 @@ _Supervisor ISA_ +
 *Ssqosid Extension* +
 *Hypervisor ISA* +
 *Shlcofideleg Extension* +
-*Svvptc Extension*
+*Svvptc Extension* +
+_Svukte Extension_
 
 |_1.14_ +
 *1.0* +
@@ -52,7 +53,8 @@ _1.14_ +
 *1.0* +
 *1.0* +
 *1.0* +
-*1.0*
+*1.0* +
+_0.4_
 
 |_Draft_ +
 *Ratified* +
@@ -74,7 +76,8 @@ _Draft_ +
 *Ratified* +
 *Ratified* +
 *Ratified* +
-*Ratified*
+*Ratified* +
+_Draft_
 |===
 
 The following changes have been made since version 1.13 of the Machine and

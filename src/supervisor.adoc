@@ -2294,7 +2294,7 @@ coherent with store instructions that modify PTEs.
 ====
 
 [[sec:svukte]]
-== "Svukte" Extension for Address-Independent Latency of User-Mode Faults to Supervisor Addresses, Version 0.3
+== "Svukte" Extension for Address-Independent Latency of User-Mode Faults to Supervisor Addresses, Version 0.4
 
 The Svukte extension provides a means to make user-mode accesses to supervisor
 memory raise page faults with timing independent of the address-translation
@@ -2316,7 +2316,8 @@ that it is more common to reserve only the upper 1 GiB of the virtual-address
 space for the operating system, leaving the lower 3 GiB for user
 processes.
 
-When `senvcfg`.UKTE=1, an instruction fetch or explicit memory access whose
+When `senvcfg`.UKTE=1 and the active `satp` register's MODE field is not Bare,
+an instruction fetch or explicit memory access whose
 effective privilege mode is U or VU is considered to be _Svukte-qualified_.
 For any Svukte-qualified memory access, virtual addresses {ge} 2^SXLEN-1^ are
 considered to be invalid; hence, an Svukte-qualified access to such an address
