@@ -244,7 +244,7 @@ a|When the debugger writes this field, it has the following meaning:
 [#norm:dtm_dmi_op_wr_nop]#0 (nop): Ignore {dmi-data} and {dmi-address}.#
 
 [#norm:dtm_dmi_op_wr_nop_no_send]#Don't send anything over the DMI during Update-DR.#
-[#norm:dtm_dmi_op_wr_nop_status]#This operation should never affect DMI busy or error status.#
+This operation should never affect DMI busy or error status.
 The address and data reported in the following Capture-DR
 are undefined.
 
