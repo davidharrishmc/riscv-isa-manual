@@ -21,18 +21,15 @@ is updated with the reason for Debug Mode entry.  [#norm:dcsr_debugger_writable_
 fields and {dcsr-nmip}, the other fields of {csr-dcsr} are only
 writable by the external debugger.#
 
-[[norm:dcsr_cause_priority_compat]]
---
-<<norm:dcsr_cause_priority_tbl>> shows the priorities of
+<<tab:dcsrcausepriority>> shows the priorities of
 reasons for entering Debug Mode.  Implementations should implement
 priorities as shown in the table. For compatibility with old versions of this spec, resethaltreq and haltreq are
 allowed to be at different positions than shown as long as:
 
 . resethaltreq is higher priority than haltreq
 . the relative order of the other causes is maintained
---
 
-[[norm:dcsr_cause_priority_tbl]]
+[[tab:dcsrcausepriority]]
 .Priority of reasons for entering Debug Mode from highest to lowest.
 [%autowidth,align="center",float="center",cols="^,^",options="header"]
 |===
@@ -250,7 +247,7 @@ a|
 
 [#norm:dcsr_stepie_interrupts_disabled]#0 (interrupts disabled): Interrupts (including NMI) are disabled during single stepping
 with {dcsr-step} set.#
-[#norm:dcsr_stepie_interrupts_disabled_supported]#This value should be supported.#
+This value should be supported.
 
 
 [#norm:dcsr_stepie_interrupts_enabled]#1 (interrupts enabled): Interrupts (including NMI) are enabled during single stepping
@@ -271,8 +268,8 @@ a|
 
 [#norm:dcsr_stopcount_freeze]#1 (freeze): Don't increment any hart-local counters while in Debug Mode or
 on `ebreak` instructions that cause entry into Debug Mode.
-These counters include the `instret` CSR.# [#norm:dcsr_stopcount_cycle]#On single-hart cores
-`cycle` should be stopped, but on multi-hart cores it must keep
+These counters include the `instret` CSR.# On single-hart cores
+`cycle` should be stopped, but [#norm:dcsr_stopcount_cycle]#on multi-hart cores it must keep
 incrementing.#
 
 [#norm:dcsr_stopcount_maybe_rdonly]#An implementation may hardwire this bit to 0 or 1.#
@@ -297,9 +294,9 @@ a|Preset
 |[[dcsr-cause]] `((cause))`
 a|[#norm:dcsr_cause_op]#Explains why Debug Mode was entered.#
 
-[#norm:dcsr_cause_multiple]#When there are multiple reasons to enter Debug Mode in a single
+When there are multiple reasons to enter Debug Mode in a single
 cycle, hardware should set {dcsr-cause} to the cause with the highest
-priority.#  See <<norm:dcsr_cause_priority_tbl>> for priorities.
+priority.  See <<tab:dcsrcausepriority>> for priorities.
 
 [#norm:dcsr_cause_ebreak]#1 (ebreak): An `ebreak` instruction was executed.#
 
@@ -408,12 +405,10 @@ separate PC register, and do need to use the PC when executing the
 Program Buffer.
 ====
 
-[[norm:dpc_read_running]]
 If the Access Register abstract command supports reading {csr-dpc} while
 the hart is running, then the value read should be the address of a
 recently executed instruction.
 
-[[norm:dpc_write_running]]
 If the Access Register abstract command supports writing {csr-dpc} while
 the hart is running, then the executing program should jump to the
 written address shortly after the write occurs.
