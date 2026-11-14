@@ -81,8 +81,8 @@ This CSR is read/write.
 This register is optional if no triggers are implemented.
 
 [#norm:tdata1_write0_disable]#Writing 0 to this register must result in a trigger that is disabled.#
-[#norm:tdata1_write0_type_disabled]#If this trigger supports multiple types, then the hardware should
-disable it by changing {tdata1-type} to 15.#
+If this trigger supports multiple types, then the hardware should
+disable it by changing {tdata1-type} to 15.
 
 This CSR is read/write.
 
@@ -400,8 +400,8 @@ register, which can be used to set triggers that only fire in that
 specific context.
 
 [#norm:scontext_data_sz]#An implementation may tie any number of high bits in this field to
-0. It's recommended to implement 16 bits on RV32 and 32 bits on
-RV64.#
+0.# It's recommended to implement 16 bits on RV32 and 32 bits on
+RV64.
 a|[#norm:scontext_data_acc]#*WARL*#
 a|[#norm:scontext_data_rst]#0#
 |===
@@ -444,11 +444,11 @@ number to this register, which can be used to set triggers that only
 fire in that specific context.
 
 [#norm:mcontext_hcontext_sz]#An implementation may tie any number of upper bits in this field to
-0. If the H extension is not implemented, it's recommended to implement
+0.# If the H extension is not implemented, it's recommended to implement
 6 bits on RV32 and 13 bits on RV64 (as visible through the
 {csr-mcontext} register).  If the H extension is implemented,
 it's recommended to implement 7 bits on RV32
-and 14 bits on RV64.#
+and 14 bits on RV64.
 a|[#norm:mcontext_hcontext_acc]#*WARL*#
 a|[#norm:mcontext_hcontext_rst]#0#
 |===
@@ -632,8 +632,8 @@ have completed before the trigger fires.#
 
 
 [#norm:mcontrol_timing_after]#1 (after): The action for this trigger will be taken after the instruction
-that triggered it is retired. It should be taken before the next
-instruction is retired#, but it is better to implement triggers imprecisely
+that triggered it is retired.# It should be taken before the next
+instruction is retired, but it is better to implement triggers imprecisely
 than to not implement them at all.  [#norm:mcontrol_timing_after_xepc]#`xepc` or
 {csr-dpc} (depending on {mcontrol-action}) must be set to
 the virtual address of the next instruction that must be executed to
@@ -741,9 +741,9 @@ different type. It is undefined when exactly such a chain fires.
 [#norm:mcontrol_chain_next]#Because {mcontrol-chain} affects the next trigger, hardware must zero it in
 writes to {csr-mcontrol} that set {tdata1-dmode} to 0 if the next trigger has
 {tdata1-dmode} of 1.#
-[#norm:mcontrol_chain_ignore]#In addition hardware should ignore writes to {csr-mcontrol} that set
+In addition hardware should ignore writes to {csr-mcontrol} that set
 {tdata1-dmode} to 1 if the previous trigger has both {tdata1-dmode} of 0 and
-{mcontrol-chain} of 1.# Debuggers must avoid the latter case by checking
+{mcontrol-chain} of 1. Debuggers must avoid the latter case by checking
 {mcontrol-chain} on the previous trigger if they're writing {csr-mcontrol}.
 
 [#norm:mcontrol_chain_len_limit]#Implementations that wish to limit the maximum length of a trigger
@@ -1140,9 +1140,9 @@ different type. It is undefined when exactly such a chain fires.
 [#norm:mcontrol6_chain_next]#Because {mcontrol6-chain} affects the next trigger, hardware must zero it in
 writes to {csr-mcontrol6} that set {tdata1-dmode} to 0 if the next trigger has
 {tdata1-dmode} of 1.#
-[#norm:mcontrol6_chain_ignore]#In addition hardware should ignore writes to {csr-mcontrol6} that set
+In addition hardware should ignore writes to {csr-mcontrol6} that set
 {tdata1-dmode} to 1 if the previous trigger has both {tdata1-dmode} of 0 and
-{mcontrol6-chain} of 1.# Debuggers must avoid the latter case by checking
+{mcontrol6-chain} of 1. Debuggers must avoid the latter case by checking
 {mcontrol6-chain} on the previous trigger if they're writing {csr-mcontrol6}.
 
 [#norm:mcontrol6_chain_len_limit]#Implementations that wish to limit the maximum length of a trigger
@@ -1854,7 +1854,7 @@ a|[#norm:textra32_sbytemask_rst]#0#
 |[[textra32-svalue]] `((svalue))`
 a|Data used together with {textra32-sselect}.
 
-[#norm:textra32_svalue_no_smode]#This field should be tied to 0 when S-mode is not supported.#
+This field should be tied to 0 when S-mode is not supported.
 a|[#norm:textra32_svalue_acc]#*WARL*#
 a|[#norm:textra32_svalue_rst]#0#
 |[[textra32-sselect]] `((sselect))`
@@ -1880,7 +1880,7 @@ ASIDMAX (defined in the Privileged Spec) bits of
 {textra32-svalue}.
 --
 
-[#norm:textra32_sselect_no_smode]#This field should be tied to 0 when S-mode is not supported.#
+This field should be tied to 0 when S-mode is not supported.
 a|[#norm:textra32_sselect_acc]#*WARL*#
 a|[#norm:textra32_sselect_rst]#0#
 |===

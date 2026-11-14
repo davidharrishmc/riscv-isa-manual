@@ -185,8 +185,6 @@ privileged mode than Y.
 any time.
 ====
 
-[[norm:Sdtrig_reentrancy]]
---
 Harts that support triggers with {mcontrol-action}=0 should implement one of the following two solutions to solve the problem of reentrancy:
 
 . The hardware prevents triggers with {mcontrol-action}=0 from matching or firing while in M-mode and while `MIE` in `mstatus` is 0. If `medeleg` [3]=1 then it prevents triggers with {mcontrol-action}=0 from
@@ -194,7 +192,6 @@ matching or firing while in S-mode and while `SIE` in `sstatus` is 0. If `medele
 prevents triggers with {mcontrol-action}=0 from matching or firing while in VS-mode and while `SIE` in `vsstatus` is 0.
 
 . {tcontrol-mte} and {tcontrol-mpte} in {csr-tcontrol} are implemented. `medeleg` [3] is hard-wired to 0.
---
 
 [NOTE]
 ====
@@ -242,7 +239,6 @@ data load trigger will match.#
 
 ==== Combined Accesses
 
-[[norm:Sdtrig_combined_indiv_access]]
 Some instructions lead a hart to perform multiple memory accesses. This
 includes vector loads and stores, as well as `cm.push` and `cm.pop`
 instructions. The Trigger Module should match such accesses as if they
@@ -315,9 +311,9 @@ software and used by hardware.
 
 ===== Invalid Addresses
 
-[#norm:tdata2_invalid_addr_write]#If {csr-tdata2} can hold any invalid addresses, then writes of an
+If {csr-tdata2} can hold any invalid addresses, then writes of an
 invalid address that can not be represented as-is should be converted to
-a different invalid address that can be represented.#
+a different invalid address that can be represented.
 
 [[norm:Sdtrig_inval_addr_cmp_val]]
 For invalid instruction fetch addresses and load and store effective addresses,
