@@ -34,17 +34,17 @@ does not exist in the hart, {abstractcs-cmderr} must be set to 3 (exception).#
 and must support read and write access to all GPRs when the selected hart is halted.#
 [#norm:dm_access_register_optional_access]#Debug Modules may optionally support accessing other registers,
 or accessing registers when the hart is running.#
-[#norm:dm_access_register_group_support]#It is recommended that if one register in a group is accessible, then
+It is recommended that if one register in a group is accessible, then
 all registers in that group are accessible, but each individual
 register (aside from GPRs) may be supported differently across read,
-write, and halt status.#
+write, and halt status.
 
 [#norm:dm_access_register_m_mode_access]#Registers might not be accessible if they wouldn't be accessible by M
 mode code currently running.# (E.g. `fflags` might not be accessible
 when `mstatus.FS` is 0.) If this is the case, the debugger is
-responsible for changing state to make the registers accessible. [#norm:dm_access_register_core_debug_regs]#The
+responsible for changing state to make the registers accessible. The
 Core Debug Registers (xref:debreg[]) should be accessible if
-abstract CSR access is implemented.#
+abstract CSR access is implemented.
 
 [[norm:dm_access_register_regno_enc]]
 .Abstract Register Numbers
@@ -314,7 +314,7 @@ a|[#norm:dm_access_memory_aampostincrement_op]#After a memory access has complet
 `arg1` (which contains the address used) by the number of bytes
 encoded in {accessmemory-aamsize}.#
 
-[#norm:dm_access_memory_aampostincrement_optional]#Supporting this variant is optional, but highly recommended# for
+[#norm:dm_access_memory_aampostincrement_optional]#Supporting this variant is optional#, but highly recommended for
 performance reasons.
 |[[accessmemory-write]] `((write))`
 a|

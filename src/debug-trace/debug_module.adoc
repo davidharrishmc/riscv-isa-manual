@@ -556,8 +556,8 @@ Another option is to allow the DM to be unlocked only by users who have
 an access key. Between {dmstatus-authenticated}, {dmstatus-authbusy}, and {dm-authdata} arbitrarily complex authentication
 mechanisms can be supported. [#norm:dm_auth_isolation]#When {dmstatus-authenticated} is clear, the DM must not interact with
 the rest of the hardware platform, nor expose details about the harts
-connected to the DM.# [#norm:dm_auth_regs_read0]#All DM registers should read 0, while writes should
-be ignored, with the following mandatory exceptions:#
+connected to the DM.# All DM registers should read 0, while writes should
+be ignored, with the following mandatory exceptions:
 
 [[norm:dm_auth_regs_read0_exceptions]]
 . {dmstatus-authenticated} in {dm-dmstatus} is readable.
@@ -566,7 +566,6 @@ be ignored, with the following mandatory exceptions:#
 . {dmcontrol-dmactive} in {dm-dmcontrol} is readable and writable.
 . {dm-authdata} is readable and writable.
 
-[[norm:dm_auth_authdata_omit]]
 Implementations where it's not possible to unlock the DM by using {dm-authdata} should not implement that register.
 
 === Version Detection

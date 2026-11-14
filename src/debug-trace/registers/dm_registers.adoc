@@ -329,8 +329,8 @@ width of {hartsel} is called `HARTSELLEN`. It must be at least 0
 and at most 20.# A debugger should discover `HARTSELLEN` by writing
 all ones to {hartsel} (assuming the maximum size) and reading back the
 value to see which bits were actually set. Debuggers must not change
-{hartsel} while an abstract command is executing. [#norm:dm_dmcontrol_hartsel_busy_ignore]#Hardware should enforce
-this by ignoring changes to {hartsel} while {abstractcs-busy} is set.#
+{hartsel} while an abstract command is executing. Hardware should enforce
+this by ignoring changes to {hartsel} while {abstractcs-busy} is set.
 
 [NOTE]
 ====
@@ -351,11 +351,11 @@ read, but can be written with {dmcontrol-setresethaltreq} and {dmcontrol-clrrese
 
 [[keepalive]]
 (((keepalive)))
-[#norm:dm_keepalive_state]#{keepalive} is an optional internal bit of per-hart state.# [#norm:dm_keepalive_op]#When it is
+[#norm:dm_keepalive_state]#{keepalive} is an optional internal bit of per-hart state.# When it is
 set, it suggests that the hardware should attempt to keep the hart
 available for the debugger, e.g. by keeping it from entering a
 low-power state once powered on. Even if the bit is implemented,
-hardware might not be able to keep a hart available.# [#norm:dm_keepalive_write]#The bit is
+hardware might not be able to keep a hart available. [#norm:dm_keepalive_write]#The bit is
 written through {dmcontrol-setkeepalive} and
 {dmcontrol-clrkeepalive}.#
 
@@ -419,8 +419,8 @@ set.#
 
 [#norm:dm_dmcontrol_haltreq_new_hartsel]#Writes apply to the new value of {hartsel} and {dmcontrol-hasel}.#
 
-[#norm:dm_dmcontrol_haltreq_busy_ignore]#Writes to this bit should be ignored while an abstract command is
-executing.#
+Writes to this bit should be ignored while an abstract command is
+executing.
 a|[#norm:dm_dmcontrol_haltreq_acc]#*WARZ*#
 a|-
 |[[dmcontrol-resumereq]] `((resumereq))`
@@ -432,8 +432,8 @@ ack bit for those harts.#
 
 [#norm:dm_dmcontrol_resumereq_new_hartsel]#Writes apply to the new value of {hartsel} and {dmcontrol-hasel}.#
 
-[#norm:dm_dmcontrol_resumereq_busy_ignore]#Writes to this bit should be ignored while an abstract command is
-executing.#
+Writes to this bit should be ignored while an abstract command is
+executing.
 a|[#norm:dm_dmcontrol_resumereq_acc]#*W1*#
 a|-
 |[[dmcontrol-hartreset]] `((hartreset))`
@@ -461,8 +461,8 @@ a|
 
 [#norm:dm_dmcontrol_ackhavereset_new_hartsel]#Writes apply to the new value of {hartsel} and {dmcontrol-hasel}.#
 
-[#norm:dm_dmcontrol_ackhavereset_busy_ignore]#Writes to this bit should be ignored while an abstract command is
-executing.#
+Writes to this bit should be ignored while an abstract command is
+executing.
 a|[#norm:dm_dmcontrol_ackhavereset_acc]#*W1*#
 a|-
 |[[dmcontrol-ackunavail]] `((ackunavail))`
@@ -529,8 +529,8 @@ cleared.# The debugger must write to {dmcontrol-clrresethaltreq} to clear it.
 
 [#norm:dm_dmcontrol_setresethaltreq_unimp]#If {dmstatus-hasresethaltreq} is 0, this field is not implemented.#
 
-[#norm:dm_dmcontrol_setresethaltreq_busy_ignore]#Writes to this bit should be ignored while an abstract command is
-executing.#
+Writes to this bit should be ignored while an abstract command is
+executing.
 a|[#norm:dm_dmcontrol_setresethaltreq_acc]#*W1*#
 a|-
 |[[dmcontrol-clrresethaltreq]] `((clrresethaltreq))`
@@ -539,15 +539,15 @@ currently selected harts.#
 
 [#norm:dm_dmcontrol_clrresethaltreq_new_hartsel]#Writes apply to the new value of {hartsel} and {dmcontrol-hasel}.#
 
-[#norm:dm_dmcontrol_clrresethaltreq_busy_ignore]#Writes to this bit should be ignored while an abstract command is
-executing.#
+Writes to this bit should be ignored while an abstract command is
+executing.
 a|[#norm:dm_dmcontrol_clrresethaltreq_acc]#*W1*#
 a|-
 |[[dmcontrol-ndmreset]] `((ndmreset))`
 a|[#norm:dm_dmcontrol_ndmreset_op]#This bit controls the reset signal from the DM to the rest of the
-hardware platform.# [#norm:dm_dmcontrol_ndmreset_scope]#The signal should reset every part of the hardware platform, including
+hardware platform.# The signal should reset every part of the hardware platform, including
 every hart, except for the DM and any logic required to access the
-DM.#
+DM.
 To perform a hardware platform reset the debugger writes 1,
 and then writes 0
 to deassert the reset.
@@ -575,8 +575,8 @@ to {dmcontrol} in the same write.#
 
 [#norm:dm_dmcontrol_dmactive_active]#1 (active): The module functions normally.#
 
-[#norm:dm_dmcontrol_dmactive_only_reset]#No other mechanism should exist that may result in resetting the
-Debug Module after power up.#
+No other mechanism should exist that may result in resetting the
+Debug Module after power up.
 
 To place the Debug Module into a known state, a debugger should write 0 to {dmcontrol-dmactive},
 poll until {dmcontrol-dmactive} is observed 0, write 1 to {dmcontrol-dmactive}, and
@@ -596,8 +596,7 @@ a|[#norm:dm_dmcontrol_dmactive_rst]#0#
 This register gives information about the hart currently
 selected by {hartsel}.
 
-[[norm:dm_hartinfo_optional]]
-This register is optional. If it is not present it should
+[#norm:dm_hartinfo_optional]#This register is optional.# If it is not present it should
 read all-zero.
 
 If this register is included, the debugger can do more with
